@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
-import Marquee from "./components/Marquee";
+import Marquee from "@/app/components/Marquee";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],

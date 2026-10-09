@@ -5,9 +5,7 @@ import type { IData } from "@/types/ProductType";
 
 
 const getMarquee = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
   return res.json();
 };
 const bnNumber = new Intl.NumberFormat("bn-BD");
@@ -20,7 +18,7 @@ const Marquee = async () => {
 
   return (
     <MarqueeText direction="right" duration={10} pauseOnHover={true}>
-      <div className="flex list-none">
+      <div className="flex list-none bg-[#FAFCFA]">
         {newMarqueeData.map((data:IData) => (
           <li key={data?.id}>
             <span>
@@ -38,9 +36,9 @@ const Marquee = async () => {
                       height={13}
                       width={13}
                       alt="green"
-                      src="/green-triangle.png"
+                      src="/red.png"
                     />
-                    <p className="text-green-500">{bnNumber.format(data?.change?.pct)}%</p>
+                    <p className="text-red-500">{bnNumber.format(data?.change?.pct)}%</p>
                   </div>
                 </div>
               ) : (
@@ -57,9 +55,9 @@ const Marquee = async () => {
                       height={13}
                       width={13}
                       alt="red"
-                      src="/red-triangle.png"
+                      src="/green.png"
                     />{" "}
-                    <p className="text-red-500">{bnNumber.format(Math.abs(data?.change?.pct))}%</p>
+                    <p className="text-green-500">{bnNumber.format(Math.abs(data?.change?.pct))}%</p>
                   </div>
                 </div>
               )}
