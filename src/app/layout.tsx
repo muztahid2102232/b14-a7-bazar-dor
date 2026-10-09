@@ -3,6 +3,7 @@ import { Hind_Siliguri } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
 import Marquee from "@/app/components/Marquee";
+import Footer from "@/app/components/Footer";
 
 const hindSiliguri = Hind_Siliguri({
   subsets: ["bengali"],
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Navbar />
         <Marquee/>
         <main>{children}</main>
+        <Footer/>
       </body>
     </html>
   );

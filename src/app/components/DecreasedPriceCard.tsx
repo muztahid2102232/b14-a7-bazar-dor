@@ -3,9 +3,9 @@ import { IData } from "@/types/ProductType";
 import { translateUnit } from "@/utils/translateUnit";
 import Image from "next/image";
 
+const DecreasedPriceCard = ({ price }: { price: IData }) => {
 
-const IncreasedPriceCard = ({ price}:{price:IData}) => {
-    const bnNumber = new Intl.NumberFormat("bn-BD");
+  const bnNumber = new Intl.NumberFormat("bn-BD");
   return (
     <div className="bg-[#FAFCFA] flex flex-col gap-3.5 p-4 rounded-2xl">
       <div className="flex items-center gap-2.5 flex-start">
@@ -21,14 +21,14 @@ const IncreasedPriceCard = ({ price}:{price:IData}) => {
           <span className="font-bold">{bnNumber.format(price?.today)}টাকা</span>
         </div>
         <div className="flex gap-3 bg-[#F0F5F0] py-2 px-4 rounded-2xl">
-          <Image alt="image" width={10} height={10} src="/redd.png" />
-          <span className="text-red-500 font-semibold">
-            {bnNumber.format(price?.change?.pct)}%
+          <Image alt="image" width={10} height={10} src="/green.png" />
+          <span className="text-green-500 font-semibold">
+            {bnNumber.format(Math.abs(price?.change?.pct))}%
           </span>
         </div>
       </div>
     </div>
   );
 };
-//namBn, unit, pct,today,categoryIcon
-export default IncreasedPriceCard;
+
+export default DecreasedPriceCard;

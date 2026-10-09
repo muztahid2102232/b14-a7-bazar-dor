@@ -5,7 +5,9 @@ import type { IData } from "@/types/ProductType";
 
 
 const getMarquee = async () => {
-  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
+  const res = await fetch(
+    "https://api.api-store.workers.dev/api/bazardor/products",
+  );
   return res.json();
 };
 const bnNumber = new Intl.NumberFormat("bn-BD");
