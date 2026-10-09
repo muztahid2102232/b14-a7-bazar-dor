@@ -20,7 +20,6 @@ const Navbar = () => {
       .then((data) => setCategories(data))
       .catch((err) => console.log(err));
   }, []);
-  console.log(categories);
 
   const date = new Intl.DateTimeFormat("bn-BD", {
     weekday: "long",
