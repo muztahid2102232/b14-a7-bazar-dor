@@ -5,12 +5,17 @@ import Form from "next/form";
 import Image from "next/image";
 import { signIn } from "@/lib/auth-client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+
+type SignupFormData = {
+  email: string;
+  password: string;
+};
+
+
 const SignInPage = () => {
   const [password, setPassword] = useState("");
-  type SignupFormData = {
-    email: string;
-    password: string;
-  };
+  const router = useRouter();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,6 +52,19 @@ const SignInPage = () => {
         console.error("An unexpected error occurred");
       }
     }
+    router.replace("/")
+  };
+  const handleGoogleSignIn = async () => {
+    const data = await signIn.social({
+      provider: "google",
+    });
+    console.log(data);
+  };
+  const handleGithubSignIn = async () => {
+    const data = await signIn.social({
+      provider: "github",
+    });
+    console.log(data);
   };
   return (
     <>
@@ -123,13 +141,19 @@ const SignInPage = () => {
 
             {/* google and github sign up section  */}
             <div className="flex gap-2.5 justify-center pointer">
-              <button className="flex gap-2.5 border border-slate-400 p-2.5 rounded-2xl">
+              <button
+                onClick={handleGoogleSignIn}
+                className="flex gap-2.5 border border-slate-400 p-2.5 rounded-2xl"
+              >
                 <Image src="/google.png" alt="google" height={20} width={20} />
                 <span className="text-black font-semibold">
                   Google দিয়ে চালিয়ে যান
                 </span>
               </button>
-              <button className="flex gap-2.5 border border-slate-400 p-2.5 rounded-2xl">
+              <button
+                onClick={handleGithubSignIn}
+                className="flex gap-2.5 border border-slate-400 p-2.5 rounded-2xl"
+              >
                 {" "}
                 <Image src="/github.png" alt="google" height={20} width={20} />
                 <span className="text-black font-semibold">
@@ -139,13 +163,16 @@ const SignInPage = () => {
             </div>
 
             <p className="font-medium text-center mt-2">
-              অ্যাকাউন্ট নেই?{" "}
-              <Link href="/sign-up" className="text-blue-600 hover:underline">
+              অ্যাকাউন্ট নেই ?{" "}
+              <Link href="/sign-up" className="text-green-600 hover:underline">
                 সাইন আপ করুন
               </Link>
             </p>
           </Form>
         </div>
+         <p className="mt-8">
+                 <Link href="/"> ← হোম পেজে ফিরে যান</Link>
+                </p>
       </div>
     </>
   );
