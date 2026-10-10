@@ -6,9 +6,7 @@ import DecreasedPriceCard from "@/app/components/DecreasedPriceCard";
 import AllProductsCard from "@/app/components/AllProductsCard";
 
 const increasedPricePromise = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
   return res.json();
 };
 

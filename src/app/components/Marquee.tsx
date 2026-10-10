@@ -5,9 +5,7 @@ import type { IData } from "@/types/ProductType";
 
 
 const getMarquee = async () => {
-  const res = await fetch(
-    "https://api.api-store.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
   return res.json();
 };
 const bnNumber = new Intl.NumberFormat("bn-BD");
@@ -19,12 +17,17 @@ const Marquee = async () => {
   );
 
   return (
-    <MarqueeText direction="right" duration={10} pauseOnHover={true}>
-      <div className="flex list-none bg-[#FAFCFA]">
-        {newMarqueeData.map((data:IData) => (
+    <MarqueeText
+      direction="right"
+      duration={10}
+      pauseOnHover={true}
+      className="bg-[#FAFCFA]"
+    >
+      <div className="flex list-none ">
+        {newMarqueeData.map((data: IData) => (
           <li key={data?.id}>
             <span>
-              {data?.change?.pct > 0? (
+              {data?.change?.pct > 0 ? (
                 <div className="flex gap-1.5 px-7 py-2.5 border border-slate-300 hover:underline">
                   <div>
                     {" "}
@@ -34,13 +37,10 @@ const Marquee = async () => {
                   </div>
 
                   <div className="flex gap-1.5">
-                    <Image
-                      height={13}
-                      width={13}
-                      alt="green"
-                      src="/red.png"
-                    />
-                    <p className="text-red-500">{bnNumber.format(data?.change?.pct)}%</p>
+                    <Image height={13} width={13} alt="green" src="/red.png" />
+                    <p className="text-red-500">
+                      {bnNumber.format(data?.change?.pct)}%
+                    </p>
                   </div>
                 </div>
               ) : (
@@ -59,7 +59,9 @@ const Marquee = async () => {
                       alt="red"
                       src="/green.png"
                     />{" "}
-                    <p className="text-green-500">{bnNumber.format(Math.abs(data?.change?.pct))}%</p>
+                    <p className="text-green-500">
+                      {bnNumber.format(Math.abs(data?.change?.pct))}%
+                    </p>
                   </div>
                 </div>
               )}
