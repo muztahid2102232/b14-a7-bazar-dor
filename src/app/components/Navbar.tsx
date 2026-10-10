@@ -15,7 +15,7 @@ const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    fetch("https://api.abcz.workers.dev/api/bazardor/categories")
+    fetch("https://openapi.programming-hero.com/api/bazardor")
       .then((res) => res.json())
       .then((data) => setCategories(data))
       .catch((err) => console.log(err));
