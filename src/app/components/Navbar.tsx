@@ -20,6 +20,7 @@ const Navbar = () => {
       .then((data) => setCategories(data))
       .catch((err) => console.log(err));
   }, []);
+  console.log(categories);
 
   const date = new Intl.DateTimeFormat("bn-BD", {
     weekday: "long",
@@ -99,7 +100,7 @@ const Navbar = () => {
       {menuOpen && (
         <div className="md:hidden border-t border-slate-200">
           <div className="flex flex-col gap-2 py-3 px-4">
-            {categories.map((category) => (
+            {categories?.map((category) => (
               <li
                 key={category.id}
                 className="list-none px-3.25 py-2 text-[#1D2720] font-semibold"
