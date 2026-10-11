@@ -9,6 +9,8 @@ export interface IData {
   nameBn: string;
   today: number;
   change: ProductChange;
-  image:string,
-  unit:string
+  image: string;
+  unit: string;
+  icon: string;
+  categoryNameBn:string;
 }
