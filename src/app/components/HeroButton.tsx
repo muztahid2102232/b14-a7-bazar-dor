@@ -1,8 +1,14 @@
-"use client";
+import Link from "next/link";
+
 const HeroButton = () => {
-    return (
-            <button className="btn bg-[#40893F] text-[#FAFCFA] self-start">সব পণ্য দেখুন</button>
-    );
+  return (
+    <Link
+      href="#সব-পণ্য"
+      className="btn self-start bg-[#40893F] text-[#FAFCFA] transition hover:bg-[#327432]"
+    >
+      সব পণ্য দেখুন
+    </Link>
+  );
 };
 
 export default HeroButton;
