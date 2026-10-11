@@ -1,5 +1,5 @@
 "use client";
-
+import ProfileDropdown from "@/app/components/ProfileDropdown";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -127,21 +127,7 @@ const Navbar = () => {
             </div>
 
             {/* AUTH BUTTONS */}
-            <div className="ml-auto flex gap-1 sm:gap-2 md:ml-0">
-              <Link
-                href="/sign-in"
-                className="btn px-2 py-1 text-sm sm:px-4.25 sm:text-base"
-              >
-                সাইন ইন
-              </Link>
-
-              <Link
-                href="/sign-up"
-                className="btn bg-[#40893F] px-2 py-1 text-sm text-[#FAFCFA] sm:px-4.25 sm:text-base"
-              >
-                সাইন আপ
-              </Link>
-            </div>
+            <ProfileDropdown />
           </div>
         </div>
       </div>
