@@ -1,11 +1,14 @@
 "use client";
-
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 import { Input, Label, TextField } from "@heroui/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signOut, updateUser, useSession } from "@/lib/auth-client";
 
 const ProfilePage = () => {
+  const router = useRouter();
+  const [isSigningOut, setIsSigningOut] = useState(false);
   const { data: session, isPending } = useSession();
 
   const [name, setName] = useState("");
@@ -14,7 +17,7 @@ const ProfilePage = () => {
   const [error, setError] = useState("");
 
   const user = session?.user;
-
+ 
   // Load the logged-in user's current name into the input
   useEffect(() => {
     if (user) {
@@ -60,13 +63,37 @@ const ProfilePage = () => {
   };
 
   // Sign out the current user
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-    } catch {
-      setError("সাইন আউট করা যায়নি। আবার চেষ্টা করুন।");
+const handleSignOut = async () => {
+  if (isSigningOut) return;
+
+  setIsSigningOut(true);
+  setError("");
+
+  try {
+    const { error } = await signOut();
+
+    if (error) {
+      toast.error(error.message || "সাইন আউট করা যায়নি");
+      setIsSigningOut(false);
+      return;
     }
-  };
+
+    toast.success("সফলভাবে সাইন আউট হয়েছে!");
+
+    router.replace("/");
+    router.refresh();
+  } catch (error: unknown) {
+    console.error("Sign-out error:", error);
+
+    toast.error(
+      error instanceof Error
+        ? error.message
+        : "একটি সমস্যা হয়েছে। আবার চেষ্টা করুন।",
+    );
+
+    setIsSigningOut(false);
+  }
+};
 
   // Show a loading state while Better Auth checks the session
   if (isPending) {
@@ -163,7 +190,7 @@ const ProfilePage = () => {
                 placeholder="যেমন: রহিম উদ্দিন"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
-                isRequired
+                
               />
             </TextField>
 
